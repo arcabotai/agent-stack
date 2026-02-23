@@ -1,0 +1,94 @@
+/**
+ * @agent-stack/payments — Type Definitions
+ */
+
+export interface PaymentClientConfig {
+  /**
+   * viem Account (e.g. from privateKeyToAccount())
+   * Must have signTypedData for payment signing.
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  account: any;
+  /**
+   * Supported chains in CAIP-2 format.
+   * Defaults to ["eip155:*"] (all EVM chains)
+   */
+  chains?: string[];
+  /**
+   * Maximum USDC amount (in base units, 6 decimals) to auto-pay per request.
+   * e.g. "1000000" = 1.00 USDC
+   * Defaults to "10000000" (10 USDC)
+   */
+  maxAmountPerRequest?: string;
+}
+
+export interface PaymentServerConfig {
+  /** Address to receive payments */
+  payTo: `0x${string}`;
+  /**
+   * Required payment amount in USDC base units (6 decimals).
+   * e.g. "100000" = 0.10 USDC
+   */
+  amount: string;
+  /**
+   * Token asset address. Defaults to USDC on Base mainnet.
+   */
+  asset?: `0x${string}`;
+  /**
+   * Network in CAIP-2 format. Defaults to "eip155:8453" (Base mainnet)
+   */
+  network?: string;
+  /**
+   * Description shown in payment requirements
+   */
+  description?: string;
+  /**
+   * Max timeout for payment verification in seconds. Defaults to 300.
+   */
+  maxTimeoutSeconds?: number;
+}
+
+export interface PaymentDetails {
+  from: `0x${string}`;
+  to: `0x${string}`;
+  amount: string;
+  asset: `0x${string}`;
+  network: string;
+  txHash?: `0x${string}`;
+  timestamp: number;
+}
+
+export interface PaymentVerifyResult {
+  valid: boolean;
+  payment?: PaymentDetails;
+  error?: string;
+}
+
+export interface PaymentBalance {
+  amount: bigint;
+  formatted: string;
+  symbol: string;
+  decimals: number;
+}
+
+export interface PaymentRequirements {
+  scheme: string;
+  network: string;
+  maxAmountRequired: string;
+  resource: string;
+  description?: string;
+  mimeType?: string;
+  payTo: string;
+  maxTimeoutSeconds: number;
+  asset: string;
+  outputSchema?: unknown;
+  extra?: Record<string, unknown>;
+}
+
+/**
+ * Middleware context — added to express req/res
+ */
+export interface PaymentContext {
+  payment: PaymentDetails;
+  requirements: PaymentRequirements;
+}

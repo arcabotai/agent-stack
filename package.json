@@ -1,0 +1,30 @@
+{
+  "name": "agent-stack-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Agent Stack SDK — identity + payments + MCP data for AI agents",
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @agent-stack/identity && npm run build -w @agent-stack/payments && npm run build -w @agent-stack/data && npm run build -w @agent-stack/core",
+    "typecheck": "tsc --noEmit",
+    "test": "npx tsx test/verify-arca.ts",
+    "clean": "rm -rf packages/*/dist"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "@x402/evm": "^2.4.0",
+    "@x402/fetch": "^2.4.0",
+    "viem": "^2.46.2",
+    "zod": "^3.25.76"
+  }
+}
