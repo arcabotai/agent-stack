@@ -1,5 +1,5 @@
 /**
- * @agent-stack/payments
+ * @a3stack/payments
  * x402 payment flows for AI agents — client (paying) and server (receiving)
  */
 

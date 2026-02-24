@@ -1,5 +1,5 @@
 /**
- * @agent-stack/payments — Type Definitions
+ * @a3stack/payments — Type Definitions
  */
 
 export interface PaymentClientConfig {

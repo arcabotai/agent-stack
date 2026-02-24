@@ -1,5 +1,5 @@
 /**
- * @agent-stack/data
+ * @a3stack/data
  * MCP server/client helpers with built-in identity verification and payment gating
  */
 

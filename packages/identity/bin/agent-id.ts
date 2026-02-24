@@ -3,9 +3,9 @@
  * agent-id CLI — verify and inspect ERC-8004 agent identities
  * 
  * Usage:
- *   npx @agent-stack/identity verify <globalId>
- *   npx @agent-stack/identity lookup <walletAddress>
- *   npx @agent-stack/identity chains
+ *   npx @a3stack/identity verify <globalId>
+ *   npx @a3stack/identity lookup <walletAddress>
+ *   npx @a3stack/identity chains
  */
 
 import { verifyAgent, getMcpEndpoint, getAgentCount, parseAgentId, SUPPORTED_CHAINS } from "../src/index.js";
@@ -22,9 +22,9 @@ Commands:
   chains                  List supported chains
 
 Examples:
-  npx @agent-stack/identity verify "eip155:8453:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432#2376"
-  npx @agent-stack/identity lookup 0xYOUR_WALLET_ADDRESS
-  npx @agent-stack/identity chains
+  npx @a3stack/identity verify "eip155:8453:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432#2376"
+  npx @a3stack/identity lookup 0xYOUR_WALLET_ADDRESS
+  npx @a3stack/identity chains
 `;
 
 async function main() {

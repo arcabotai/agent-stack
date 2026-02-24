@@ -1,5 +1,5 @@
 {
-  "name": "@agent-stack/data",
+  "name": "@a3stack/data",
   "version": "0.1.0",
   "description": "MCP server/client helpers with built-in identity verification and payment gating",
   "type": "module",
@@ -18,8 +18,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@agent-stack/identity": "file:../identity",
-    "@agent-stack/payments": "file:../payments",
+    "@a3stack/identity": "file:../identity",
+    "@a3stack/payments": "file:../payments",
     "@modelcontextprotocol/sdk": "^1.26.0",
     "viem": "^2.39.3",
     "zod": "^3.24.2"

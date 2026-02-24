@@ -1,4 +1,4 @@
-import { findAllRegistrations } from "@agent-stack/identity";
+import { findAllRegistrations } from "@a3stack/identity";
 
 const WALLET = process.env.TEST_WALLET as `0x${string}`;
 if (!WALLET) throw new Error("Set TEST_WALLET env var");

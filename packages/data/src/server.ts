@@ -14,8 +14,8 @@ import {
   IDENTITY_REGISTRY_ADDRESS,
   IDENTITY_REGISTRY_ABI,
   SUPPORTED_CHAINS,
-} from "@agent-stack/identity";
-import { PaymentServer, USDC_BASE, DEFAULT_NETWORK } from "@agent-stack/payments";
+} from "@a3stack/identity";
+import { PaymentServer, USDC_BASE, DEFAULT_NETWORK } from "@a3stack/payments";
 import type { AgentMcpServerConfig } from "./types.js";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

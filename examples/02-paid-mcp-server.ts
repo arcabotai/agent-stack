@@ -11,8 +11,8 @@
  */
 
 import { z } from "zod";
-import { createAgentMcpServer } from "@agent-stack/data";
-import { USDC_BASE } from "@agent-stack/payments";
+import { createAgentMcpServer } from "@a3stack/data";
+import { USDC_BASE } from "@a3stack/payments";
 
 const MY_WALLET = process.env.PAYMENT_WALLET ?? "YOUR_WALLET_ADDRESS";
 const MY_AGENT_ID = Number(process.env.AGENT_ID ?? 0);

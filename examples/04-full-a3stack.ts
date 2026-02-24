@@ -1,25 +1,25 @@
 /**
- * Example 4: Full Agent Stack — identity + payments + MCP in one
+ * Example 4: Full A3Stack — identity + payments + MCP in one
  *
  * Demonstrates the AgentStack class, which combines all three layers.
  * This is the "zero config" path for building a complete agent service.
  *
  * Run:
- *   PRIVATE_KEY=0x... node --loader ts-node/esm 04-full-agent-stack.ts
+ *   PRIVATE_KEY=0x... node --loader ts-node/esm 04-full-a3stack.ts
  */
 
 import { base } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
 import { z } from "zod";
-import { AgentStack } from "@agent-stack/core";
-import { USDC_BASE } from "@agent-stack/payments";
+import { AgentStack } from "@a3stack/core";
+import { USDC_BASE } from "@a3stack/payments";
 
 const PRIVATE_KEY = (process.env.PRIVATE_KEY ?? "") as `0x${string}`;
 if (!PRIVATE_KEY) throw new Error("Set PRIVATE_KEY env var");
 
 async function main() {
   const account = privateKeyToAccount(PRIVATE_KEY);
-  console.log(`\n🤖 Agent Stack Demo`);
+  console.log(`\n🤖 A3Stack Demo`);
   console.log(`   Wallet: ${account.address}`);
 
   // ─── Initialize AgentStack ────────────────────────────────────────
@@ -53,7 +53,7 @@ async function main() {
       content: [
         {
           type: "text" as const,
-          text: `Hello, ${name ?? "world"}! I'm DemoAgent — a paid AI service built on the Agent Stack SDK.`,
+          text: `Hello, ${name ?? "world"}! I'm DemoAgent — a paid AI service built on the A3Stack SDK.`,
         },
       ],
     })
@@ -123,7 +123,7 @@ async function main() {
   // console.log("\n📝 Registering on Base...");
   // const { agentId, globalId } = await agent.register({
   //   name: "DemoAgent",
-  //   description: "Demo agent built with Agent Stack SDK",
+  //   description: "Demo agent built with A3Stack SDK",
   //   x402Support: true,
   //   active: true,
   //   includeServerEndpoint: true,
@@ -132,7 +132,7 @@ async function main() {
   // console.log(`   Agent ID: #${agentId}`);
   // console.log(`   Global ID: ${globalId}`);
 
-  console.log(`\n✅ Agent Stack running. Press Ctrl+C to stop.`);
+  console.log(`\n✅ A3Stack running. Press Ctrl+C to stop.`);
 }
 
 main().catch(console.error);

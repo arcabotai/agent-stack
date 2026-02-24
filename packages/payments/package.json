@@ -1,5 +1,5 @@
 {
-  "name": "@agent-stack/payments",
+  "name": "@a3stack/payments",
   "version": "0.1.0",
   "description": "x402 payment flows for AI agents — client (paying) and server (receiving)",
   "type": "module",

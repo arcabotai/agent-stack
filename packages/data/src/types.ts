@@ -1,8 +1,8 @@
 /**
- * @agent-stack/data — Type Definitions
+ * @a3stack/data — Type Definitions
  */
 
-import type { PaymentServerConfig } from "@agent-stack/payments";
+import type { PaymentServerConfig } from "@a3stack/payments";
 
 export interface AgentMcpServerConfig {
   /** MCP server name (shown to clients) */

@@ -5,7 +5,7 @@
  * This is a read-only test: no wallet needed, no transactions.
  */
 
-import { verifyAgent, getMcpEndpoint, getAgentCount, parseAgentId } from "@agent-stack/identity";
+import { verifyAgent, getMcpEndpoint, getAgentCount, parseAgentId } from "@a3stack/identity";
 
 const ARCA_BASE = "eip155:8453:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432#2376";
 const ARCA_ETH = "eip155:1:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432#22775";
@@ -25,7 +25,7 @@ function assert(condition: boolean, msg: string) {
 }
 
 async function main() {
-  console.log("\n🧪 Agent Stack SDK — Integration Tests\n");
+  console.log("\n🧪 A3Stack SDK — Integration Tests\n");
 
   // 1. Parse global ID
   console.log("1. Parse agent global ID");

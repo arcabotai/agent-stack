@@ -6,14 +6,14 @@
  * Default: verifies Arca (arcabot.eth) on Base
  */
 
-import { verifyAgent, getMcpEndpoint, getA2aEndpoint, parseAgentId } from "@agent-stack/identity";
+import { verifyAgent, getMcpEndpoint, getA2aEndpoint, parseAgentId } from "@a3stack/identity";
 
 const DEFAULT_AGENT = "eip155:8453:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432#2376";
 
 async function main() {
   const globalId = process.argv[2] || DEFAULT_AGENT;
 
-  console.log("\n🔍 Agent Stack — Identity Verifier\n");
+  console.log("\n🔍 A3Stack — Identity Verifier\n");
   console.log(`   Agent ID: ${globalId}\n`);
 
   // Parse the ID

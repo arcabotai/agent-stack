@@ -1,4 +1,4 @@
-# Agent Stack SDK — API Design
+# A3Stack SDK — API Design
 
 ## Vision
 One package to rule three layers: identity, payments, data. Developers should be able to build a fully capable paid AI agent service in under 50 lines of code.
@@ -6,19 +6,19 @@ One package to rule three layers: identity, payments, data. Developers should be
 ## Package Structure (Monorepo)
 
 ```
-@agent-stack/identity   — ERC-8004 registration + verification + discovery
-@agent-stack/payments   — x402 client (paying) + server (receiving) helpers
-@agent-stack/data       — MCP server/client with built-in identity + payment
-@agent-stack/core       — The glue: AgentStack class that connects all three
+@a3stack/identity   — ERC-8004 registration + verification + discovery
+@a3stack/payments   — x402 client (paying) + server (receiving) helpers
+@a3stack/data       — MCP server/client with built-in identity + payment
+@a3stack/core       — The glue: AgentStack class that connects all three
 ```
 
 ---
 
-## @agent-stack/identity
+## @a3stack/identity
 
 ### Registration
 ```typescript
-import { AgentIdentity } from "@agent-stack/identity";
+import { AgentIdentity } from "@a3stack/identity";
 
 const identity = new AgentIdentity({
   account,                          // viem Account (signer)
@@ -49,7 +49,7 @@ await identity.setAgentURI(agentId, newJsonUri);
 
 ### Verification
 ```typescript
-import { verifyAgent } from "@agent-stack/identity";
+import { verifyAgent } from "@a3stack/identity";
 
 // Verify by global agent ID
 const result = await verifyAgent("eip155:8453:0x8004...#2376");
@@ -64,7 +64,7 @@ const agents = await findAgentsByOwner("0x1be93C...", { chain: base });
 
 ### Discovery
 ```typescript
-import { discoverAgents } from "@agent-stack/identity";
+import { discoverAgents } from "@a3stack/identity";
 
 // Find agents that expose MCP endpoints
 const agents = await discoverAgents({
@@ -92,11 +92,11 @@ const wallet = await identity.getPaymentWallet(agentId);
 
 ---
 
-## @agent-stack/payments
+## @a3stack/payments
 
 ### Client (paying)
 ```typescript
-import { createPaymentClient } from "@agent-stack/payments";
+import { createPaymentClient } from "@a3stack/payments";
 
 const payer = createPaymentClient({
   account,             // viem Account
@@ -122,7 +122,7 @@ const receipt = payer.decodeReceipt(response);
 
 ### Server (receiving)
 ```typescript
-import { createPaymentServer } from "@agent-stack/payments";
+import { createPaymentServer } from "@a3stack/payments";
 
 const receiver = createPaymentServer({
   payTo: "0x1be93C...",          // payment recipient
@@ -149,11 +149,11 @@ res.status(402).set("X-PAYMENT-REQUIRED", requirements).end();
 
 ---
 
-## @agent-stack/data
+## @a3stack/data
 
 ### MCP Server with Built-in Identity + Payment
 ```typescript
-import { createAgentMcpServer } from "@agent-stack/data";
+import { createAgentMcpServer } from "@a3stack/data";
 
 const server = createAgentMcpServer({
   name: "Arca",
@@ -186,7 +186,7 @@ const { app, transport } = await server.listen(3000);
 
 ### MCP Client with Auto-Payment
 ```typescript
-import { createAgentMcpClient } from "@agent-stack/data";
+import { createAgentMcpClient } from "@a3stack/data";
 
 // Connect by ERC-8004 global ID — auto-resolves MCP endpoint + pays if needed
 const client = await createAgentMcpClient({
@@ -206,11 +206,11 @@ const client = await createAgentMcpClient({ url: "https://mcp.agent.eth/" });
 
 ---
 
-## @agent-stack/core
+## @a3stack/core
 
 ### All-in-One: AgentStack
 ```typescript
-import { AgentStack } from "@agent-stack/core";
+import { AgentStack } from "@a3stack/core";
 
 // Full agent setup in one shot
 const agent = new AgentStack({
@@ -328,12 +328,12 @@ interface VerificationResult {
 ## Dependency Graph
 
 ```
-@agent-stack/core
-  ├── @agent-stack/identity
-  ├── @agent-stack/payments
-  └── @agent-stack/data
-        ├── @agent-stack/identity
-        └── @agent-stack/payments
+@a3stack/core
+  ├── @a3stack/identity
+  ├── @a3stack/payments
+  └── @a3stack/data
+        ├── @a3stack/identity
+        └── @a3stack/payments
 
 External deps:
   viem — blockchain interactions

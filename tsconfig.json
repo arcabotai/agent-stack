@@ -14,10 +14,10 @@
     "resolveJsonModule": true,
     "allowImportingTsExtensions": false,
     "paths": {
-      "@agent-stack/identity": ["./packages/identity/src/index.ts"],
-      "@agent-stack/payments": ["./packages/payments/src/index.ts"],
-      "@agent-stack/data": ["./packages/data/src/index.ts"],
-      "@agent-stack/core": ["./packages/core/src/index.ts"]
+      "@a3stack/identity": ["./packages/identity/src/index.ts"],
+      "@a3stack/payments": ["./packages/payments/src/index.ts"],
+      "@a3stack/data": ["./packages/data/src/index.ts"],
+      "@a3stack/core": ["./packages/core/src/index.ts"]
     }
   },
   "include": ["packages/*/src/**/*"],

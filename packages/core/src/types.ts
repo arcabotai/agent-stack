@@ -1,10 +1,10 @@
 /**
- * @agent-stack/core — Type Definitions
+ * @a3stack/core — Type Definitions
  */
 
 import type { Chain, Account } from "viem";
-import type { RegisterOptions } from "@agent-stack/identity";
-import type { PaymentServerConfig, PaymentClientConfig } from "@agent-stack/payments";
+import type { RegisterOptions } from "@a3stack/identity";
+import type { PaymentServerConfig, PaymentClientConfig } from "@a3stack/payments";
 
 export interface AgentStackConfig {
   /**

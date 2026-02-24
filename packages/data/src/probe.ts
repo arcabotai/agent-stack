@@ -5,8 +5,8 @@
  * All read-only, no wallet needed.
  */
 
-import { verifyAgent, getMcpEndpoint, getA2aEndpoint, parseAgentId } from "@agent-stack/identity";
-import type { AgentRegistrationFile, VerificationResult } from "@agent-stack/identity";
+import { verifyAgent, getMcpEndpoint, getA2aEndpoint, parseAgentId } from "@a3stack/identity";
+import type { AgentRegistrationFile, VerificationResult } from "@a3stack/identity";
 
 export interface AgentProbeResult {
   /** The global agent ID that was probed */

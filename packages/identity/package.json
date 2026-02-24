@@ -1,5 +1,5 @@
 {
-  "name": "@agent-stack/identity",
+  "name": "@a3stack/identity",
   "version": "0.1.0",
   "description": "ERC-8004 agent identity registration, verification, and discovery",
   "type": "module",

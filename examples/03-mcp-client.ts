@@ -12,8 +12,8 @@
  */
 
 import { privateKeyToAccount } from "viem/accounts";
-import { createAgentMcpClient } from "@agent-stack/data";
-import { verifyAgent } from "@agent-stack/identity";
+import { createAgentMcpClient } from "@a3stack/data";
+import { verifyAgent } from "@a3stack/identity";
 
 const PRIVATE_KEY = (process.env.PRIVATE_KEY ?? "") as `0x${string}`;
 if (!PRIVATE_KEY) throw new Error("Set PRIVATE_KEY env var");

@@ -4,8 +4,8 @@
 
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
-import { getMcpEndpoint, verifyAgent } from "@agent-stack/identity";
-import { PaymentClient } from "@agent-stack/payments";
+import { getMcpEndpoint, verifyAgent } from "@a3stack/identity";
+import { PaymentClient } from "@a3stack/payments";
 import type { AgentMcpClientConfig } from "./types.js";
 
 type ToolResult = {
@@ -173,7 +173,7 @@ export async function createAgentMcpClient(
 
   // Create MCP client with optional payment-wrapped fetch
   const client = new Client({
-    name: "agent-stack-client",
+    name: "a3stack-client",
     version: "0.1.0",
   });
 

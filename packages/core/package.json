@@ -1,7 +1,7 @@
 {
-  "name": "@agent-stack/core",
+  "name": "@a3stack/core",
   "version": "0.1.0",
-  "description": "Agent Stack SDK — identity + payments + data for AI agents",
+  "description": "A3Stack SDK — identity + payments + data for AI agents",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -18,9 +18,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@agent-stack/identity": "file:../identity",
-    "@agent-stack/payments": "file:../payments",
-    "@agent-stack/data": "file:../data",
+    "@a3stack/identity": "file:../identity",
+    "@a3stack/payments": "file:../payments",
+    "@a3stack/data": "file:../data",
     "viem": "^2.39.3",
     "zod": "^3.24.2"
   },

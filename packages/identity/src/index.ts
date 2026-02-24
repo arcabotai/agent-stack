@@ -1,5 +1,5 @@
 /**
- * @agent-stack/identity
+ * @a3stack/identity
  * ERC-8004 agent identity: registration, verification, and discovery
  */
 

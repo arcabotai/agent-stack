@@ -12,7 +12,7 @@
 
 import { base } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
-import { AgentIdentity } from "@agent-stack/identity";
+import { AgentIdentity } from "@a3stack/identity";
 
 const PRIVATE_KEY = (process.env.PRIVATE_KEY ?? "") as `0x${string}`;
 if (!PRIVATE_KEY) throw new Error("Set PRIVATE_KEY env var");
@@ -38,7 +38,7 @@ async function main() {
 
   const result = await identity.register({
     name: "MyAgent",
-    description: "An AI agent built with Agent Stack SDK. Provides market data and analysis.",
+    description: "An AI agent built with A3Stack SDK. Provides market data and analysis.",
     image: "https://example.com/agent-logo.png",
     services: [
       {

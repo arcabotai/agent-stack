@@ -1,8 +1,8 @@
-# Agent Stack SDK
+# A3Stack SDK
 
 > **One package to connect three layers of agent infrastructure: identity, payments, and data.**
 
-Built by [arcabot.ai](https://arcabot.ai) — AI agent infrastructure.
+Built by [arcabot.ai](https://arcabot.ai) — AI agent infrastructure. Docs at [a3stack.arcabot.ai](https://a3stack.arcabot.ai).
 
 ---
 
@@ -23,7 +23,7 @@ None of these layers talk to each other. This SDK is the glue.
 ## What You Can Build
 
 ```typescript
-import { AgentStack } from "@agent-stack/core";
+import { AgentStack } from "@a3stack/core";
 import { base } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
 import { z } from "zod";
@@ -61,13 +61,13 @@ const result = await client.callTool("analyze", { query: "ETH price trend" });
 ## Packages
 
 ```
-@agent-stack/identity   — ERC-8004 registration, verification, discovery
-@agent-stack/payments   — x402 client (paying) + server (receiving)
-@agent-stack/data       — MCP server/client with identity + payment
-@agent-stack/core       — The glue: AgentStack class + all re-exports
+@a3stack/identity   — ERC-8004 registration, verification, discovery
+@a3stack/payments   — x402 client (paying) + server (receiving)
+@a3stack/data       — MCP server/client with identity + payment
+@a3stack/core       — The glue: AgentStack class + all re-exports
 ```
 
-Use them independently or together via `@agent-stack/core`.
+Use them independently or together via `@a3stack/core`.
 
 ---
 
@@ -75,24 +75,24 @@ Use them independently or together via `@agent-stack/core`.
 
 ```bash
 # All-in-one
-npm install @agent-stack/core viem @x402/fetch @x402/evm @modelcontextprotocol/sdk zod
+npm install @a3stack/core viem @x402/fetch @x402/evm @modelcontextprotocol/sdk zod
 
 # Or modular
-npm install @agent-stack/identity viem
-npm install @agent-stack/payments @x402/fetch @x402/evm viem
-npm install @agent-stack/data @modelcontextprotocol/sdk viem zod
+npm install @a3stack/identity viem
+npm install @a3stack/payments @x402/fetch @x402/evm viem
+npm install @a3stack/data @modelcontextprotocol/sdk viem zod
 ```
 
 ---
 
 ## API Reference
 
-### `@agent-stack/identity`
+### `@a3stack/identity`
 
 #### Register an agent
 
 ```typescript
-import { AgentIdentity } from "@agent-stack/identity";
+import { AgentIdentity } from "@a3stack/identity";
 import { base } from "viem/chains";
 
 const identity = new AgentIdentity({ account, chain: base });
@@ -113,7 +113,7 @@ const { agentId, globalId } = await identity.register({
 #### Verify another agent
 
 ```typescript
-import { verifyAgent } from "@agent-stack/identity";
+import { verifyAgent } from "@a3stack/identity";
 
 const result = await verifyAgent("eip155:8453:0x8004...#2376");
 // result.valid — on-chain ownership + back-reference check
@@ -125,7 +125,7 @@ const result = await verifyAgent("eip155:8453:0x8004...#2376");
 #### Resolve MCP endpoint
 
 ```typescript
-import { getMcpEndpoint } from "@agent-stack/identity";
+import { getMcpEndpoint } from "@a3stack/identity";
 
 const url = await getMcpEndpoint("eip155:8453:0x8004...#2376");
 // "https://mcp.arcabot.ai/mcp"
@@ -133,12 +133,12 @@ const url = await getMcpEndpoint("eip155:8453:0x8004...#2376");
 
 ---
 
-### `@agent-stack/payments`
+### `@a3stack/payments`
 
 #### Pay other agents (client)
 
 ```typescript
-import { createPaymentClient } from "@agent-stack/payments";
+import { createPaymentClient } from "@a3stack/payments";
 
 const payer = createPaymentClient({ account });
 
@@ -156,7 +156,7 @@ const receipt = payer.decodeReceipt(response);
 #### Accept payments (server)
 
 ```typescript
-import { createPaymentServer } from "@agent-stack/payments";
+import { createPaymentServer } from "@a3stack/payments";
 
 const receiver = createPaymentServer({
   payTo: "0x1be93C...",
@@ -177,12 +177,12 @@ const requirements = receiver.buildRequirements("https://myapi.ai/tool");
 
 ---
 
-### `@agent-stack/data`
+### `@a3stack/data`
 
 #### Create a paid MCP server
 
 ```typescript
-import { createAgentMcpServer } from "@agent-stack/data";
+import { createAgentMcpServer } from "@a3stack/data";
 import { z } from "zod";
 
 const server = createAgentMcpServer({
@@ -214,7 +214,7 @@ const { url } = await server.listen(3000);
 #### Connect to an MCP server
 
 ```typescript
-import { createAgentMcpClient } from "@agent-stack/data";
+import { createAgentMcpClient } from "@a3stack/data";
 
 // By ERC-8004 identity (auto-resolves URL + pays)
 const client = await createAgentMcpClient({
@@ -233,12 +233,12 @@ await client.close();
 
 ---
 
-### `@agent-stack/core`
+### `@a3stack/core`
 
 The `AgentStack` class is the all-in-one interface:
 
 ```typescript
-import { AgentStack } from "@agent-stack/core";
+import { AgentStack } from "@a3stack/core";
 import { base } from "viem/chains";
 import { privateKeyToAccount } from "viem/accounts";
 import { z } from "zod";
@@ -352,7 +352,7 @@ await agent.stop();
 | `examples/01-register-agent.ts` | Register on-chain via ERC-8004 |
 | `examples/02-paid-mcp-server.ts` | Build a paid MCP server |
 | `examples/03-mcp-client.ts` | Connect to a paid MCP server |
-| `examples/04-full-agent-stack.ts` | Full AgentStack class demo |
+| `examples/04-full-a3stack.ts` | Full AgentStack class demo |
 | `examples/05-agent-to-agent-payment.ts` | Full agent-to-agent payment flow |
 
 ---
@@ -371,7 +371,7 @@ await agent.stop();
 ### Probe Agent (no wallet needed)
 
 ```typescript
-import { probeAgent } from "@agent-stack/core";
+import { probeAgent } from "@a3stack/core";
 
 // Discover what an agent offers before connecting
 const info = await probeAgent("eip155:8453:0x8004...#2376");
@@ -387,7 +387,7 @@ console.log(info.registrations);    // cross-chain IDs
 ### Multi-chain Discovery
 
 ```typescript
-import { findAllRegistrations } from "@agent-stack/core";
+import { findAllRegistrations } from "@a3stack/core";
 
 // Find all registrations for a wallet across all 17+ supported chains
 const regs = await findAllRegistrations("0x1be93C...");

@@ -1,14 +1,14 @@
 /**
- * @agent-stack/core
- * Agent Stack SDK — identity + payments + data for AI agents
+ * @a3stack/core
+ * A3Stack SDK — identity + payments + data for AI agents
  *
  * The all-in-one glue layer. Import just what you need:
- *   import { AgentStack } from "@agent-stack/core"
+ *   import { AgentStack } from "@a3stack/core"
  *
  * Or use individual packages for more control:
- *   import { AgentIdentity } from "@agent-stack/identity"
- *   import { PaymentClient } from "@agent-stack/payments"
- *   import { createAgentMcpServer } from "@agent-stack/data"
+ *   import { AgentIdentity } from "@a3stack/identity"
+ *   import { PaymentClient } from "@a3stack/payments"
+ *   import { createAgentMcpServer } from "@a3stack/data"
  */
 
 // Main class
@@ -28,7 +28,7 @@ export {
   findAllRegistrations,
   IDENTITY_REGISTRY_ADDRESS,
   SUPPORTED_CHAINS,
-} from "@agent-stack/identity";
+} from "@a3stack/identity";
 
 export type {
   AgentRegistrationFile,
@@ -37,7 +37,7 @@ export type {
   VerificationResult,
   RegisterOptions,
   RegisterResult,
-} from "@agent-stack/identity";
+} from "@a3stack/identity";
 
 export {
   // Payments
@@ -49,7 +49,7 @@ export {
   USDC_ETH,
   DEFAULT_NETWORK,
   NETWORK_USDC,
-} from "@agent-stack/payments";
+} from "@a3stack/payments";
 
 export type {
   PaymentClientConfig,
@@ -57,7 +57,7 @@ export type {
   PaymentDetails,
   PaymentBalance,
   PaymentVerifyResult,
-} from "@agent-stack/payments";
+} from "@a3stack/payments";
 
 export {
   // Data / MCP
@@ -66,8 +66,8 @@ export {
   AgentMcpServerInstance,
   AgentMcpClientInstance,
   probeAgent,
-} from "@agent-stack/data";
+} from "@a3stack/data";
 
-export type { AgentMcpServerConfig, AgentMcpClientConfig, AgentProbeResult } from "@agent-stack/data";
+export type { AgentMcpServerConfig, AgentMcpClientConfig, AgentProbeResult } from "@a3stack/data";
 
 export type { AgentStackConfig, AgentStackRegisterOptions } from "./types.js";

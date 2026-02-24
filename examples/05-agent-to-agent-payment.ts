@@ -1,7 +1,7 @@
 /**
  * Example 5: Agent-to-Agent payment flow
  *
- * This is the core value proposition of the Agent Stack SDK:
+ * This is the core value proposition of the A3Stack SDK:
  * - Agent A verifies Agent B's identity (ERC-8004)
  * - Agent A discovers B's MCP endpoint (from services array)
  * - Agent A checks B's payment wallet
@@ -14,9 +14,9 @@
  */
 
 import { privateKeyToAccount } from "viem/accounts";
-import { verifyAgent, getMcpEndpoint } from "@agent-stack/identity";
-import { PaymentClient } from "@agent-stack/payments";
-import { createAgentMcpClient } from "@agent-stack/data";
+import { verifyAgent, getMcpEndpoint } from "@a3stack/identity";
+import { PaymentClient } from "@a3stack/payments";
+import { createAgentMcpClient } from "@a3stack/data";
 
 const PRIVATE_KEY = (process.env.PRIVATE_KEY ?? "") as `0x${string}`;
 if (!PRIVATE_KEY) throw new Error("Set PRIVATE_KEY env var");

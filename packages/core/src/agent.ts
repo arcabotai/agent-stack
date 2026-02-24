@@ -5,12 +5,12 @@
 
 import type { Account } from "viem";
 import { z } from "zod";
-import { AgentIdentity, verifyAgent, getMcpEndpoint, IDENTITY_REGISTRY_ADDRESS } from "@agent-stack/identity";
-import type { VerificationResult } from "@agent-stack/identity";
-import { PaymentClient } from "@agent-stack/payments";
-import { AgentMcpServerInstance, createAgentMcpClient, probeAgent } from "@agent-stack/data";
-import type { AgentProbeResult } from "@agent-stack/data";
-import type { AgentMcpClientInstance } from "@agent-stack/data";
+import { AgentIdentity, verifyAgent, getMcpEndpoint, IDENTITY_REGISTRY_ADDRESS } from "@a3stack/identity";
+import type { VerificationResult } from "@a3stack/identity";
+import { PaymentClient } from "@a3stack/payments";
+import { AgentMcpServerInstance, createAgentMcpClient, probeAgent } from "@a3stack/data";
+import type { AgentProbeResult } from "@a3stack/data";
+import type { AgentMcpClientInstance } from "@a3stack/data";
 import type { AgentStackConfig, AgentStackRegisterOptions } from "./types.js";
 
 export class AgentStack {
