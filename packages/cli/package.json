@@ -1,0 +1,42 @@
+{
+  "name": "a3stack",
+  "version": "0.1.0",
+  "description": "A3Stack CLI — identity, payments, and data for AI agents",
+  "type": "module",
+  "bin": {
+    "a3stack": "./bin/a3stack.js"
+  },
+  "files": [
+    "bin/",
+    "dist/"
+  ],
+  "scripts": {
+    "build": "tsup src/cli.ts --format esm --outDir dist",
+    "postbuild": "cp dist/cli.js bin/a3stack.js"
+  },
+  "dependencies": {
+    "viem": "^2.39.3"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "erc-8004",
+    "identity",
+    "x402",
+    "payments",
+    "mcp"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arcabotai/a3stack"
+  },
+  "homepage": "https://a3stack.arcabot.ai"
+}
