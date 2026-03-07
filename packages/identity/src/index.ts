@@ -32,3 +32,14 @@ export type {
   IdentityConfig,
   DiscoverOptions,
 } from "./types.js";
+
+// Discovery & Reputation (powered by ag0 SDK)
+export { AgentDiscovery } from "./discovery.js";
+export type {
+  DiscoveredAgent,
+  AgentSearchFilters,
+  ReputationSummary,
+  FeedbackEntry,
+  GiveFeedbackOptions,
+  DiscoveryConfig,
+} from "./discovery.js";

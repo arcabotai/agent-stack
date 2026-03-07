@@ -21,6 +21,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "agent0-sdk": "^1.5.3",
     "viem": "^2.39.3",
     "zod": "^3.24.2"
   },

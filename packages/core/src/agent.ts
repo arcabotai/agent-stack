@@ -5,8 +5,8 @@
 
 import type { Account } from "viem";
 import { z } from "zod";
-import { AgentIdentity, verifyAgent, getMcpEndpoint, IDENTITY_REGISTRY_ADDRESS } from "@a3stack/identity";
-import type { VerificationResult } from "@a3stack/identity";
+import { AgentIdentity, AgentDiscovery, verifyAgent, getMcpEndpoint, IDENTITY_REGISTRY_ADDRESS } from "@a3stack/identity";
+import type { VerificationResult, DiscoveredAgent, ReputationSummary, FeedbackEntry, AgentSearchFilters, GiveFeedbackOptions } from "@a3stack/identity";
 import { PaymentClient } from "@a3stack/payments";
 import { AgentMcpServerInstance, createAgentMcpClient, probeAgent } from "@a3stack/data";
 import type { AgentProbeResult } from "@a3stack/data";
@@ -16,6 +16,7 @@ import type { A3StackConfig, A3StackRegisterOptions } from "./types.js";
 export class A3Stack {
   private config: A3StackConfig;
   private identity: AgentIdentity;
+  private _discovery?: AgentDiscovery;
   private payer: PaymentClient;
   private mcpServer?: AgentMcpServerInstance;
   private _agentId?: number;
@@ -258,5 +259,58 @@ export class A3Stack {
    */
   get mcpServerInstance(): AgentMcpServerInstance | undefined {
     return this.mcpServer;
+  }
+
+  // ── Discovery & Reputation (powered by ag0 SDK) ──────────────
+
+  /**
+   * Get or create the discovery client.
+   * Lazy-initialized — no overhead if you don't use it.
+   */
+  get discovery(): AgentDiscovery {
+    if (!this._discovery) {
+      this._discovery = new AgentDiscovery({
+        chainId: this.config.chain.id,
+        rpcUrl: this.config.rpc ?? this.config.chain.rpcUrls?.default?.http?.[0] ?? "",
+      });
+    }
+    return this._discovery;
+  }
+
+  /**
+   * Search for agents across the ecosystem.
+   * Uses ag0's subgraph for cross-chain indexed search.
+   *
+   * @example
+   *   const agents = await stack.discover({ name: "weather" });
+   *   const trusted = await stack.discover({ feedback: { minValue: 80 } });
+   */
+  async discover(filters: AgentSearchFilters = {}): Promise<DiscoveredAgent[]> {
+    return this.discovery.search(filters);
+  }
+
+  /**
+   * Get reputation summary for an agent.
+   * Returns count + average score (0-100).
+   *
+   * @example
+   *   const rep = await stack.reputation("8453:102");
+   *   console.log(`Score: ${rep.averageValue}/100 (${rep.count} reviews)`);
+   */
+  async reputation(agentId: string): Promise<ReputationSummary> {
+    return this.discovery.getReputation(agentId);
+  }
+
+  /**
+   * Get feedback entries for an agent.
+   *
+   * @example
+   *   const reviews = await stack.feedback("1:22775");
+   *   for (const r of reviews) {
+   *     console.log(`${r.value}/100 by ${r.reviewer} — ${r.tags.join(", ")}`);
+   *   }
+   */
+  async feedback(agentId: string): Promise<FeedbackEntry[]> {
+    return this.discovery.getFeedback(agentId);
   }
 }

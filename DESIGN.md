@@ -62,23 +62,37 @@ const result = await verifyAgent({ chain: base, agentId: 2376 });
 const agents = await findAgentsByOwner("0x1be93C...", { chain: base });
 ```
 
-### Discovery
+### Discovery & Reputation (powered by ag0 SDK)
 ```typescript
-import { discoverAgents } from "@a3stack/identity";
+import { AgentDiscovery } from "@a3stack/identity";
 
-// Find agents that expose MCP endpoints
-const agents = await discoverAgents({
-  chain: base,
-  filter: {
-    hasService: "MCP",        // has MCP endpoint
-    x402Support: true,         // accepts payments
-    active: true,
-  }
+const discovery = new AgentDiscovery({
+  chainId: 8453,
+  rpcUrl: "https://base-mainnet.g.alchemy.com/v2/...",
 });
-// Returns: AgentRegistration[] with resolved registration files
+
+// Search agents across the ecosystem (subgraph-indexed)
+const agents = await discovery.search({ name: "weather" });
+const trusted = await discovery.search({ feedback: { minValue: 80 } });
+
+// Get reputation
+const rep = await discovery.getReputation("8453:102");
+// { count: 2, averageValue: 40.5 }
+
+// Get feedback entries
+const reviews = await discovery.getFeedback("1:22775");
+// [{ value: 80, tags: ["quality"], reviewer: "0x..." }, ...]
 
 // Resolve MCP endpoint for an agent
 const mcpUrl = await getMcpEndpoint("eip155:8453:0x8004...#2376");
+```
+
+### Discovery via A3Stack core
+```typescript
+// Integrated into the main class
+const agents = await stack.discover({ name: "weather" });
+const rep = await stack.reputation("8453:102");
+const reviews = await stack.feedback("1:22775");
 ```
 
 ### Payment Wallet
@@ -330,6 +344,7 @@ interface VerificationResult {
 ```
 @a3stack/core
   ├── @a3stack/identity
+  │     └── agent0-sdk (discovery/reputation via subgraph)
   ├── @a3stack/payments
   └── @a3stack/data
         ├── @a3stack/identity
@@ -337,8 +352,20 @@ interface VerificationResult {
 
 External deps:
   viem — blockchain interactions
+  agent0-sdk — discovery + reputation (ag0 subgraph)
   @x402/fetch — payment client
   @x402/evm — EVM payment scheme
   @modelcontextprotocol/sdk — MCP protocol
   zod — schema validation
 ```
+
+## Architecture Philosophy
+
+**Compose, don't compete.**
+
+- A3Stack handles **registration + gasless onboarding + payments** (CDP Paymaster)
+- ag0 SDK handles **discovery + reputation + feedback** (subgraph indexing)
+- SIWA handles **authentication** (ERC-8004 + ERC-8128)
+
+Each layer is best-in-class. A3Stack is the composition layer that makes them
+work together.

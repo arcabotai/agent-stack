@@ -37,7 +37,15 @@ export type {
   VerificationResult,
   RegisterOptions,
   RegisterResult,
+  DiscoveredAgent,
+  AgentSearchFilters,
+  ReputationSummary,
+  FeedbackEntry,
+  GiveFeedbackOptions,
+  DiscoveryConfig,
 } from "@a3stack/identity";
+
+export { AgentDiscovery } from "@a3stack/identity";
 
 export {
   // Payments
